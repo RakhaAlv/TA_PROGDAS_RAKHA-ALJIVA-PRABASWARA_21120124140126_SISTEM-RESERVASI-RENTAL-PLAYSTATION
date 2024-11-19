@@ -1,23 +1,21 @@
 <?php
 session_start();
-include "../config/database.php";
+include "../config/User.php";
+
+$user = new User();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $check_user_query = "SELECT * FROM users WHERE username='$username'";
-    $result = $conn->query($check_user_query);
-
-    if ($result->num_rows > 0) {
+    if ($user->isUsernameTaken($username)) {
         echo "<p class='error-message'>Username sudah ada.</p>";
     } else {
-        $insert_user_query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
-        if ($conn->query($insert_user_query) === TRUE) {
+        if ($user->registerUser($username, $password)) {
             header("Location: login.php");
             exit;
         } else {
-            echo "<p class='error-message'>Error: " . $insert_user_query . "<br>" . $conn->error . "</p>";
+            echo "<p class='error-message'>Error: Could not register user.</p>";
         }
     }
 }

@@ -1,8 +1,20 @@
 <?php
 session_start();
-if (isset($_SESSION['user_id'])) {
+
+function redirectToDashboard() {
     header("Location: pages/dashboard.php");
     exit;
+}
+
+function displayButtons() {
+    echo '<div class="button-container">';
+    echo '<a href="pages/login.php" class="futuristic-button">Login</a>';
+    echo '<a href="pages/register.php" class="futuristic-button">Register</a>';
+    echo '</div>';
+}
+
+if (isset($_SESSION['user_id'])) {
+    redirectToDashboard();
 }
 ?>
 
@@ -12,15 +24,12 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="Design/style.css?v=1.0"> 
+    <link rel="stylesheet" type="text/css" href="Design/style.css?v=3.0"> 
 </head>
 <body>
     <div class="welcome-container">
         <h1>SELAMAT DATANG WAROENG PLAYSTATION </h1>
-        <div class="button-container">
-            <a href="pages/login.php" class="futuristic-button">Login</a>
-            <a href="pages/register.php" class="futuristic-button">Register</a>
-        </div>
+        <?php displayButtons(); ?>
     </div>
 </body>
 </html>

@@ -1,6 +1,10 @@
 <?php
 session_start();
-include "../config/database.php";
+include "../config/database.php"; // Pastikan koneksi database diimpor
+
+// Inisialisasi koneksi database
+$database = new Database();
+$conn = $database->getConnection();
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
@@ -13,9 +17,11 @@ if (!$booking_id) {
     exit;
 }
 
-$booking_query = "SELECT * FROM bookings WHERE id = $booking_id";
-$booking_result = $conn->query($booking_query);
-$booking = $booking_result->fetch_assoc();
+$booking_query = "SELECT * FROM bookings WHERE id = :booking_id";
+$stmt = $conn->prepare($booking_query);
+$stmt->bindParam(':booking_id', $booking_id, PDO::PARAM_INT);
+$stmt->execute();
+$booking = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$booking) {
     echo "<p class='error-message'>Booking not found.</p>";
@@ -35,16 +41,16 @@ if (!$booking) {
     <div class="success-container">
         <h1>Berhasil Melakukan Pembayaran</h1>
         <p class="success-message">Selamat bermain!</p>
-        <p>PlayStation Type: <?php echo $booking['playstation_type']; ?></p>
+        <p>PlayStation Type: <?php echo htmlspecialchars($booking['playstation_type']); ?></p>
         
         <div class="button-container">
             <a href="dashboard.php" class="menu-button">Kembali ke Dashboard</a>
         </div>
 
         <h2>Detail Booking</h2>
-        <p><strong>Booking ID:</strong> <?php echo $booking['id']; ?></p>
-        <p><strong>Waktu Booking:</strong> <?php echo $booking['booking_time']; ?></p>
-        <p><strong>Durasi:</strong> <?php echo $booking['duration']; ?> jam</p>
+        <p><strong>Booking ID:</strong> <?php echo htmlspecialchars($booking['id']); ?></p>
+        <p><strong>Waktu Booking:</strong> <?php echo htmlspecialchars($booking['booking_time']); ?></p>
+        <p><strong>Durasi:</strong> <?php echo htmlspecialchars($booking['duration']); ?> jam</p>
         <p><strong>Total Biaya:</strong> Rp <?php echo number_format($booking['total_amount'], 0, ',', '.'); ?></p>
     </div>
 </body>

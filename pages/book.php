@@ -1,11 +1,12 @@
 <?php
 session_start();
-include "../config/database.php";
+include "../config/Booking.php";
+include "../config/user.php"; // Pastikan ini untuk mengimpor koneksi database
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit;
-}
+$database = new Database();
+$conn = $database->getConnection(); // Inisialisasi koneksi database
+
+$booking = new Booking();
 
 $prices = [
     "PS3" => 6000,
@@ -20,18 +21,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $duration = $_POST['duration'];
     $user_id = $_SESSION['user_id'];
 
+    // Menghitung total biaya
+    $total_amount = $prices[$playstation_type] * $duration;
 
-    $price_per_hour = $prices[$playstation_type];
-    $total_amount = $price_per_hour * $duration;
+    // Menggunakan prepared statement untuk menghindari SQL injection
+    $insert_booking_query = "INSERT INTO bookings (user_id, playstation_type, booking_time, duration, total_amount) VALUES (:user_id, :playstation_type, :booking_time, :duration, :total_amount)";
+    $stmt = $conn->prepare($insert_booking_query);
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->bindParam(':playstation_type', $playstation_type);
+    $stmt->bindParam(':booking_time', $booking_time);
+    $stmt->bindParam(':duration', $duration);
+    $stmt->bindParam(':total_amount', $total_amount);
 
-    $insert_booking_query = "INSERT INTO bookings (user_id, playstation_type, booking_time, duration, total_amount) VALUES ('$user_id', '$playstation_type', '$booking_time', '$duration', '$total_amount')";
-    
-    if ($conn->query($insert_booking_query) === TRUE) {
-        $booking_id = $conn->insert_id; 
+    if ($stmt->execute()) {
+        $booking_id = $conn->lastInsertId(); 
+
         echo "<p class='success-message'>Booking successful! Total amount: Rp " . number_format($total_amount, 0, ',', '.') . ". Please proceed to payment.</p>";
         echo "<a href='payment.php?booking_id=$booking_id' class='futuristic-button'>Proceed to Payment</a>";
     } else {
-        echo "<p class='error-message'>Error: " . $insert_booking_query . "<br>" . $conn->error . "</p>";
+        echo "<p class='error-message'>Error: " . htmlspecialchars($stmt->errorInfo()[2]) . "</p>";
     }
 }
 ?>

@@ -1,17 +1,18 @@
 <?php
 session_start();
-include "../config/database.php";
+include "../config/User.php";
+
+$user = new User();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $conn->query($query);
+    $result = $user->validateUser ($username, $password);
 
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['id'];
+    if ($result->rowCount() > 0) {
+        $userData = $result->fetch(PDO::FETCH_ASSOC);
+        $_SESSION['user_id'] = $userData['id'];
         header("Location: dashboard.php");
         exit;
     } else {
@@ -32,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container">
         <h2>Login to PlayStation</h2>
         <form method="POST" action="">
-        <div class="form-group">
+            <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" name="username" placeholder="Username" required><br>
             </div>

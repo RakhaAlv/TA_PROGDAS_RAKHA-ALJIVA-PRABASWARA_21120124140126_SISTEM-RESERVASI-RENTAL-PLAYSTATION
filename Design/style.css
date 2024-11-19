@@ -2,7 +2,9 @@
 /* Global Styles                       */
 /* ------------------------------------ */
 body {
-    background-color: #181c66; /* Warna latar belakang terang */
+    background-image: url("PS5.jpg");
+    background-size:cover;
+    background-repeat: no-repeat;
     color: #333; /* Warna teks gelap */
     font-family: 'Arial', sans-serif;
     padding: 20px;
