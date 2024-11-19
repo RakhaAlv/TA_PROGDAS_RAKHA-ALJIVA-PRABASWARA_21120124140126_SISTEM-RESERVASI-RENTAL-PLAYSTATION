@@ -49,10 +49,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Book a PlayStation</h2>
         <form method="POST" action="">
             <select name="playstation_type" required>
-                <option value="PS3">PS3</option>
-                <option value="PS4">PS4</option>
-                <option value="PS4 Pro">PS4 Pro</option>
-                <option value="PS5">PS5</option>
+            <?php
+                // Menggunakan perulangan untuk menampilkan daftar PlayStation dan harga
+                foreach ($prices as $type => $price) {
+                    echo "<option value='$type'>$type - Rp " . number_format($price, 0, ',', '.') . " per hour</option>";
+                }
+                ?>
             </select><br>
             <input type="datetime-local" name="booking_time" required><br>
             <input type="number" name="duration" placeholder="Duration (hours)" required><br>

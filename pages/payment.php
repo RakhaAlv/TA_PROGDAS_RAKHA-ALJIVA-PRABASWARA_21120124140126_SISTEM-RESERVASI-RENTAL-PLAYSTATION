@@ -35,10 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p class='error-message'>Error: " . $conn->error . "</p>";
         }
     } else {
-        // Jika jumlah tidak sesuai, batalkan booking
-        $delete_booking_query = "DELETE FROM bookings WHERE id = $booking_id";
-        $conn->query($delete_booking_query);
-        echo "<p class='error-message'>Payment failed! Amount does not match. Your booking has been canceled.</p>";
+        // Jika jumlah tidak sesuai, beri peringatan kepada pengguna
+        echo "<p class='error-message'>Payment failed! Amount does not match. Please enter the correct amount.</p>";
     }
 }
 ?>
