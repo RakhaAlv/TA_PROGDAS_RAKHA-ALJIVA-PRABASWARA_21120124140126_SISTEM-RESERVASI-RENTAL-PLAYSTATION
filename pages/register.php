@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($check_user_query);
 
     if ($result->num_rows > 0) {
-        echo "<p class='error-message'>Username already exists.</p>";
+        echo "<p class='error-message'>Username sudah ada.</p>";
     } else {
         $insert_user_query = "INSERT INTO users (username, password) VALUES ('$username', '$password')";
         if ($conn->query($insert_user_query) === TRUE) {
@@ -24,20 +24,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Register</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrasi</title>
     <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
 </head>
 <body>
     <div class="register-container">
-        <h2>Create an Account</h2>
+        <h2>Buat Akun</h2>
         <form method="POST" action="">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <button type="submit">Register</button>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Username" required><br>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Password" required><br>
+            </div>
+            <button type="submit">Daftar</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login here</a></p>
+        <p>Sudah punya akun? <a href="login.php">Masuk di sini</a></p>
     </div>
 </body>
 </html>

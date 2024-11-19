@@ -79,6 +79,69 @@ body {
 }
 
 /* ------------------------------------ */
+/* Register Page Styles                */
+/* ------------------------------------ */
+.register-container {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Warna latar belakang putih */
+    border-radius: 5px; /* Sudut melengkung */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+}
+
+.register-container h2 {
+    text-align: center; /* Teks di tengah */
+    color: #333; /* Warna teks */
+}
+
+.register-container .form-group {
+    margin-bottom: 15px; /* Jarak antar grup form */
+}
+
+.register-container label {
+    display: block; /* Menampilkan label sebagai blok */
+    margin-bottom: 5px; /* Jarak bawah label */
+    color: #555; /* Warna teks label */
+}
+
+.register-container input[type="text"],
+.register-container input[type="password"] {
+    width: 100%; /* Lebar penuh */
+    padding: 10px; /* Padding dalam input */
+    border: 1px solid #ccc; /* Border abu-abu */
+    border-radius: 3px; /* Sudut melengkung */
+}
+
+.register-container button {
+    width: 100%; /* Lebar penuh */
+    padding: 10px; /* Padding dalam tombol */
+    background-color: #28a745; /* Warna tombol hijau */
+    color: white; /* Warna teks putih */
+    border: none; /* Tanpa border */
+    border-radius: 3px; /* Sudut melengkung */
+    cursor: pointer; /* Kursor tangan saat hover */
+}
+
+.register-container button:hover {
+    background-color: #218838; /* Warna tombol saat hover */
+}
+
+.register-container p {
+    text-align: center; /* Teks di tengah */
+    margin-top: 15px; /* Jarak atas */
+}
+
+.register-container a {
+    color: #007bff; /* Warna link biru */
+    text-decoration: none; /* Tanpa garis bawah */
+}
+
+.register-container a:hover {
+    text-decoration: underline; /* Garis bawah saat hover */
+}
+
+/* ------------------------------------ */
 /* Login Page Styles                   */
 /* ------------------------------------ */
 .login-container {
