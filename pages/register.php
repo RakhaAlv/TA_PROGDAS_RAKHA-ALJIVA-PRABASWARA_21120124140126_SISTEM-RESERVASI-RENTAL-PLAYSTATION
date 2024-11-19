@@ -24,16 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrasi</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <title>Register - PlayStation</title>
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0"> 
 </head>
 <body>
-    <div class="register-container">
-        <h2>Buat Akun</h2>
+    <div class="container">
+        <h2>Register to PlayStation</h2>
         <form method="POST" action="">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -43,9 +43,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="password">Password:</label>
                 <input type="password" name="password" placeholder="Password" required><br>
             </div>
-            <button type="submit">Daftar</button>
+            <button type="submit">Register</button>
         </form>
-        <p>Sudah punya akun? <a href="login.php">Masuk di sini</a></p>
+        <p>Already have an account? <a href="login.php">Login here</a></p>
     </div>
 </body>
 </html>

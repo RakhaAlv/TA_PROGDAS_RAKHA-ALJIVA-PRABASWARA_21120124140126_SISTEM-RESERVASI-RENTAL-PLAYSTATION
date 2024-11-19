@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Harga per jam untuk setiap jenis PlayStation
 $prices = [
     "PS3" => 6000,
     "PS4" => 12000,
@@ -21,15 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $duration = $_POST['duration'];
     $user_id = $_SESSION['user_id'];
 
-    // Hitung total biaya
+
     $price_per_hour = $prices[$playstation_type];
     $total_amount = $price_per_hour * $duration;
 
-    // Insert booking ke database
     $insert_booking_query = "INSERT INTO bookings (user_id, playstation_type, booking_time, duration, total_amount) VALUES ('$user_id', '$playstation_type', '$booking_time', '$duration', '$total_amount')";
     
     if ($conn->query($insert_booking_query) === TRUE) {
-        $booking_id = $conn->insert_id; // Ambil ID booking yang baru saja ditambahkan
+        $booking_id = $conn->insert_id; 
         echo "<p class='success-message'>Booking successful! Total amount: Rp " . number_format($total_amount, 0, ',', '.') . ". Please proceed to payment.</p>";
         echo "<a href='payment.php?booking_id=$booking_id' class='futuristic-button'>Proceed to Payment</a>";
     } else {
@@ -42,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Book a PlayStation</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
 </head>
 <body>
     <div class="booking-container">
@@ -50,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="POST" action="">
             <select name="playstation_type" required>
             <?php
-                // Menggunakan perulangan untuk menampilkan daftar PlayStation dan harga
                 foreach ($prices as $type => $price) {
                     echo "<option value='$type'>$type - Rp " . number_format($price, 0, ',', '.') . " per hour</option>";
                 }

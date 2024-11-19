@@ -9,7 +9,6 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['booking_id'])) {
 
 $booking_id = $_GET['booking_id'];
 
-// Ambil detail booking untuk menampilkan informasi kepada pengguna
 $booking_query = "SELECT * FROM bookings WHERE id = $booking_id";
 $booking_result = $conn->query($booking_query);
 $booking = $booking_result->fetch_assoc();
@@ -20,22 +19,17 @@ if (!$booking) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $amount = $_POST['amount']; // Ambil jumlah yang dimasukkan pengguna
-    $total_amount = $booking['total_amount']; // Ambil total_amount dari booking
-
-    // Periksa apakah jumlah yang dimasukkan sesuai dengan total_amount
+    $amount = $_POST['amount']; 
+    $total_amount = $booking['total_amount']; 
     if ($amount == $total_amount) {
-        // Simpan informasi pembayaran ke database
         $insert_payment_query = "INSERT INTO payments (booking_id, amount, payment_status) VALUES ('$booking_id', '$amount', 'completed')";
         if ($conn->query($insert_payment_query) === TRUE) {
-            // Alihkan ke halaman sukses pembayaran
             header("Location: payment_success.php?booking_id=$booking_id");
             exit;
         } else {
             echo "<p class='error-message'>Error: " . $conn->error . "</p>";
         }
     } else {
-        // Jika jumlah tidak sesuai, beri peringatan kepada pengguna
         echo "<p class='error-message'>Payment failed! Amount does not match. Please enter the correct amount.</p>";
     }
 }
@@ -47,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
 </head>
 <body>
     <div class="payment-container">

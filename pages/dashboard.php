@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 <html>
 <head>
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
 </head>
 <body>
     <div class="dashboard-container">

@@ -7,14 +7,12 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
-// Ambil informasi booking dari session atau query string (booking_id)
 $booking_id = $_GET['booking_id'] ?? null;
 if (!$booking_id) {
     echo "<p class='error-message'>Booking not found.</p>";
     exit;
 }
 
-// Ambil detail booking untuk menampilkan informasi kepada pengguna
 $booking_query = "SELECT * FROM bookings WHERE id = $booking_id";
 $booking_result = $conn->query($booking_query);
 $booking = $booking_result->fetch_assoc();
@@ -31,7 +29,7 @@ if (!$booking) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Successful</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0"> 
 </head>
 <body>
     <div class="success-container">

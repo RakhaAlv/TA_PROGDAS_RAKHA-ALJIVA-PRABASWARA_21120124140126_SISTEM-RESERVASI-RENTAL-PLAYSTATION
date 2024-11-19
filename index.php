@@ -12,7 +12,7 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" type="text/css" href="Design/style.css"> <!-- Link ke CSS -->
+    <link rel="stylesheet" type="text/css" href="Design/style.css?v=1.0"> 
 </head>
 <body>
     <div class="welcome-container">

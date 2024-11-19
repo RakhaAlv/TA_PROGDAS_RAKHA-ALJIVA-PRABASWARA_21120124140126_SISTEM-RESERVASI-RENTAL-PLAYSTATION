@@ -21,17 +21,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css"> <!-- Link ke CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PlayStation</title>
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
+    <div class="container">
+        <h2>Login to PlayStation</h2>
         <form method="POST" action="">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
+        <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" placeholder="Username" required><br>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" placeholder="Password" required><br>
+            </div>
             <button type="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register here</a></p>

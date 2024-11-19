@@ -79,99 +79,80 @@ body {
 }
 
 /* ------------------------------------ */
-/* Register Page Styles                */
+/* Login and Register Page Styles      */
 /* ------------------------------------ */
-.register-container {
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
+.container {
+    width: 350px; /* Lebar kontainer */
+    padding: 30px; /* Padding dalam kontainer */
     background-color: #ffffff; /* Warna latar belakang putih */
-    border-radius: 5px; /* Sudut melengkung */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan */
+    border-radius: 10px; /* Sudut melengkung */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan yang lebih halus */
+    margin-top: 50px; /* Jarak dari atas */
+    margin-left: 550px;
 }
 
-.register-container h2 {
+.container h2 {
     text-align: center; /* Teks di tengah */
     color: #333; /* Warna teks */
+    margin-bottom: 20px; /* Jarak bawah judul */
 }
 
-.register-container .form-group {
-    margin-bottom: 15px; /* Jarak antar grup form */
+.container .form-group {
+    margin-bottom: 20px; /* Jarak antar grup form */
 }
 
-.register-container label {
+.container label {
     display: block; /* Menampilkan label sebagai blok */
     margin-bottom: 5px; /* Jarak bawah label */
     color: #555; /* Warna teks label */
 }
 
-.register-container input[type="text"],
-.register-container input[type="password"] {
-    width: 100%; /* Lebar penuh */
-    padding: 10px; /* Padding dalam input */
+.container input[type="text"],
+.container input[type="password"] {
+    width: 95%; /* Lebar penuh */
+    padding: 12px; /* Padding dalam input */
     border: 1px solid #ccc; /* Border abu-abu */
-    border-radius: 3px; /* Sudut melengkung */
+    border-radius: 5px; /* Sudut melengkung */
+    font-size: 16px; /* Ukuran font yang lebih besar */
+    transition: border-color 0.3s; /* Transisi untuk border */
 }
 
-.register-container button {
+.container input[type="text"]:focus,
+.container input[type="password"]:focus {
+    border-color: #007bff; /* Warna border saat fokus */
+    outline: none; /* Menghilangkan outline default */
+}
+
+.container button {
     width: 100%; /* Lebar penuh */
-    padding: 10px; /* Padding dalam tombol */
-    background-color: #28a745; /* Warna tombol hijau */
+    padding: 12px; /* Padding dalam tombol */
+    background-color: #007bff; /* Warna tombol biru */
     color: white; /* Warna teks putih */
     border: none; /* Tanpa border */
-    border-radius: 3px; /* Sudut melengkung */
+    border-radius: 5px; /* Sudut melengkung */
     cursor: pointer; /* Kursor tangan saat hover */
+    font-size: 16px; /* Ukuran font tombol */
+    transition: background-color 0.3s, transform 0.2s; /* Transisi untuk efek hover */
 }
 
-.register-container button:hover {
-    background-color: #218838; /* Warna tombol saat hover */
+.container button:hover {
+    background-color: #0056b3; /* Warna tombol saat hover */
+    transform: translateY(-2px); /* Efek angkat saat hover */
 }
 
-.register-container p {
+.container p {
     text-align: center; /* Teks di tengah */
     margin-top: 15px; /* Jarak atas */
 }
 
-.register-container a {
+.container a {
     color: #007bff; /* Warna link biru */
     text-decoration: none; /* Tanpa garis bawah */
 }
 
-.register-container a:hover {
+.container a:hover {
     text-decoration: underline; /* Garis bawah saat hover */
 }
-
-/* ------------------------------------ */
-/* Login Page Styles                   */
-/* ------------------------------------ */
-.login-container {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #9ab0f1;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2 {
-    text-align: center;
-    color: #333;
-}
-
-.login-container form {
-    display: flex;
-    flex-direction: column;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    margin-bottom: 15px;
-}
-
-.login-container button {
-    margin-top: 10px;
-}
-
 /* ------------------------------------ */
 /* Dashboard Page Styles                */
 /* ------------------------------------ */
@@ -234,6 +215,7 @@ body {
 .booking-container select,
 .booking-container input[type="datetime-local"],
 .booking-container input[type="number"] {
+    width: 95%;
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -275,7 +257,7 @@ h2 {
 }
 
 input[type="number"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
