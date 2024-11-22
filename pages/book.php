@@ -1,12 +1,9 @@
 <?php
 session_start();
-include "../config/Booking.php";
-include "../config/user.php"; // Pastikan ini untuk mengimpor koneksi database
+include "../config/user.php"; 
 
 $database = new Database();
-$conn = $database->getConnection(); // Inisialisasi koneksi database
-
-$booking = new Booking();
+$conn = $database->getConnection(); 
 
 $prices = [
     "PS3" => 6000,
@@ -21,10 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $duration = $_POST['duration'];
     $user_id = $_SESSION['user_id'];
 
-    // Menghitung total biaya
     $total_amount = $prices[$playstation_type] * $duration;
 
-    // Menggunakan prepared statement untuk menghindari SQL injection
     $insert_booking_query = "INSERT INTO bookings (user_id, playstation_type, booking_time, duration, total_amount) VALUES (:user_id, :playstation_type, :booking_time, :duration, :total_amount)";
     $stmt = $conn->prepare($insert_booking_query);
     $stmt->bindParam(':user_id', $user_id);
@@ -36,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         $booking_id = $conn->lastInsertId(); 
 
-        echo "<p class='success-message'>Booking successful! Total amount: Rp " . number_format($total_amount, 0, ',', '.') . ". Please proceed to payment.</p>";
-        echo "<a href='payment.php?booking_id=$booking_id' class='futuristic-button'>Proceed to Payment</a>";
+        echo "<p class='success-message'>Booking Berhasil! Total Biaya: Rp " . number_format($total_amount, 0, ',', '.') . ".Mohon Lanjut Ke Proses Pembayaran.</p>";
+        echo "<a href='payment.php?booking_id=$booking_id' class='welcome-button'>Cepatkan Bayar</a>";
     } else {
         echo "<p class='error-message'>Error: " . htmlspecialchars($stmt->errorInfo()[2]) . "</p>";
     }
@@ -47,23 +42,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Book a PlayStation</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
+    <title>Booking PlayStation</title>
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=4.0">
 </head>
 <body>
     <div class="booking-container">
-        <h2>Book a PlayStation</h2>
+        <h2>Silahkan Booking PlayStation</h2>
         <form method="POST" action="">
             <select name="playstation_type" required>
             <?php
                 foreach ($prices as $type => $price) {
-                    echo "<option value='$type'>$type - Rp " . number_format($price, 0, ',', '.') . " per hour</option>";
+                    echo "<option value='$type'>$type - Rp " . number_format($price, 0, ',', '.') . " per jam</option>";
                 }
                 ?>
             </select><br>
             <input type="datetime-local" name="booking_time" required><br>
-            <input type="number" name="duration" placeholder="Duration (hours)" required><br>
-            <button type="submit">Book</button>
+            <input type="number" name="duration" placeholder="Durasi(Jam)" required><br>
+            <button type="submit">Booking</button>
         </form>
     </div>
 </body>

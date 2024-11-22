@@ -27,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - PlayStation</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0"> 
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=2.0"> 
 </head>
 <body>
     <div class="container">
-        <h2>Register to PlayStation</h2>
+        <h2>Silahkan Registrasi Akun Waroeng Playstation</h2>
         <form method="POST" action="">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <button type="submit">Register</button>
         </form>
-        <p>Already have an account? <a href="login.php">Login here</a></p>
+        <p>Sudah Punya Akun? <a href="login.php">Login Disini</a></p>
     </div>
 </body>
 </html>

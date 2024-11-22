@@ -2,7 +2,7 @@
 /* Global Styles                       */
 /* ------------------------------------ */
 body {
-    background-image: url("PS5.jpg");
+    background-image: url("Wallpaper.jpg");
     background-size:cover;
     background-repeat: no-repeat;
     color: #333; /* Warna teks gelap */
@@ -18,7 +18,7 @@ body {
     max-width: 600px;
     margin: auto;
     padding: 40px;
-    background-color: rgba(255, 255, 255, 0.9); /* Latar belakang transparan */
+    background-color: rgba(255, 255, 255, 0.8); /* Latar belakang transparan */
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     text-align: center;
@@ -36,19 +36,19 @@ body {
     gap: 20px; /* Jarak antar tombol */
 }
 
-.futuristic-button {
-    padding: 15px 25px;
+.welcome-button {
+    padding: 15px 20px;
     background-color: #007bff; /* Warna tombol biru */
     color: #ffffff;
     text-decoration: none;
-    border-radius: 5px;
-    border: 2px solid transparent; /* Border transparan */
+    border-radius: 3px;
+    border: 1px solid transparent; /* Border transparan */
     position: relative;
     overflow: hidden; /* Menyembunyikan elemen yang melampaui batas */
-    transition: color 0.4s;
+    transition: color 0.2s;
 }
 
-.futuristic-button::before {
+.welcome-button::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -62,7 +62,7 @@ body {
     transform: translate(-50%, -50%) scale(0);
 }
 
-.futuristic-button:hover::before {
+.welcome-button:hover::before {
     width: 400%;
     height: 400%;
     top: 50%;
@@ -70,12 +70,12 @@ body {
     transform: translate(-50%, -50%) scale(1);
 }
 
-.futuristic-button:hover {
+.welcome-button:hover {
     color: #007bff; /* Ubah warna teks saat hover */
     border-color: #007bff; /* Ubah warna border saat hover */
 }
 
-.futuristic-button span {
+.welcome-button span {
     position: relative;
     z-index: 1; /* Menempatkan teks di atas efek */
 }
@@ -86,7 +86,7 @@ body {
 .container {
     width: 350px; /* Lebar kontainer */
     padding: 30px; /* Padding dalam kontainer */
-    background-color: #ffffff; /* Warna latar belakang putih */
+    background-color: rgba(255, 255, 255, 0.8); /* Warna latar belakang putih */
     border-radius: 10px; /* Sudut melengkung */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan yang lebih halus */
     margin-top: 50px; /* Jarak dari atas */
@@ -162,7 +162,7 @@ body {
     max-width: 600px;
     margin: auto;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -198,7 +198,7 @@ body {
     max-width: 500px;
     margin: auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -245,7 +245,7 @@ body {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #ffffff; /* Warna latar belakang putih */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

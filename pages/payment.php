@@ -1,17 +1,15 @@
 <?php
 session_start();
-include "../config/user.php"; // Pastikan ini diimpor
-include "../config/booking.php"; // Jika Anda menggunakan kelas Booking
+include "../config/user.php"; 
 
 $database = new Database();
-$conn = $database->getConnection(); // Inisialisasi koneksi database
+$conn = $database->getConnection(); 
 
 if (!isset($_SESSION['user_id']) || !isset($_GET['booking_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Mengambil booking_id dari parameter GET
 $booking_id = isset($_GET['booking_id']) ? $_GET['booking_id'] : null; // Menggunakan ternary operator untuk menghindari error
 if (!$booking_id) {
     echo "<p class='error-message'>Booking ID tidak valid.</p>";
@@ -35,16 +33,14 @@ if ($stmt->execute()) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Pastikan untuk memvalidasi dan membersihkan input
-    $amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0; // Menggunakan floatval untuk memastikan nilai numerik
+    $amount = isset($_POST['amount']) ? floatval($_POST['amount']) : 0; 
     $total_amount = $booking['total_amount']; 
 
-    // Periksa apakah jumlah yang dimasukkan sesuai dengan total_amount
     if ($amount == $total_amount) {
         $insert_payment_query = "INSERT INTO payments (booking_id, amount, payment_status) VALUES (:booking_id, :amount, 'completed')";
         $stmt_payment = $conn->prepare($insert_payment_query);
         $stmt_payment->bindParam(':booking_id', $booking_id, PDO::PARAM_INT);
-        $stmt_payment->bindParam(':amount', $amount, PDO::PARAM_STR); // Menggunakan PARAM_STR untuk jumlah
+        $stmt_payment->bindParam(':amount', $amount, PDO::PARAM_STR); 
 
         if ($stmt_payment->execute()) {
             header("Location: payment_success.php?booking_id=$booking_id");
@@ -54,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p class='error-message'>Error: " . htmlspecialchars($errorInfo[2]) . "</p>";
         }
     } else {
-        echo "<p class='error-message'>Payment failed! Amount does not match. Please enter the correct amount.</p>";
+        echo "<p class='error-message'>Pembayaran Gagal! Nominal biaya yang dimasukkan tidak sesuai. Mohon untuk memasukkan nominal biaya yang sesuai.</p>";
     }
 }
 ?>
@@ -65,19 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=4.0">
 </head>
 <body>
     <div class="payment-container">
-        <h2>Payment for Booking ID: <?php echo htmlspecialchars($booking_id); ?></h2>
+        <h2>Pembayaran Booking ID: <?php echo htmlspecialchars($booking_id); ?></h2>
         <p>PlayStation Type: <?php echo htmlspecialchars($booking['playstation_type']); ?></p>
-        <p>Booking Time: <?php echo htmlspecialchars($booking['booking_time']); ?></p>
-        <p>Duration: <?php echo htmlspecialchars($booking['duration']); ?> hours</p>
-        <p>Total Amount: Rp <?php echo number_format($booking['total_amount'], 0, ',', '.'); ?></p>
+        <p>Waktu Booking: <?php echo htmlspecialchars($booking['booking_time']); ?></p>
+        <p>Durasi: <?php echo htmlspecialchars($booking['duration']); ?> hours</p>
+        <p>Total Biaya: Rp <?php echo number_format($booking['total_amount'], 0, ',', '.'); ?></p>
         
         <form method="POST" action="">
-            <input type="number" name="amount" placeholder="Enter amount" required><br>
-            <button type="submit">Pay Now</button>
+            <input type="number" name="amount" placeholder="Masukkan Total Biaya" required><br>
+            <button type="submit">Bayar Sekarang</button>
         </form>
     </div>
 </body>

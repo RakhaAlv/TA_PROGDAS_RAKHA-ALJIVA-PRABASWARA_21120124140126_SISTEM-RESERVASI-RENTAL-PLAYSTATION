@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit;
     } else {
-        echo "<p style='color:red;'>Invalid username or password.</p>";
+        echo "<p style='color:red;'> username atau password Invalid.</p>";
     }
 }
 ?>
@@ -27,11 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PlayStation</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0">
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=2.0">
 </head>
 <body>
     <div class="container">
-        <h2>Login to PlayStation</h2>
+        <h2>Login Waroeng PlayStation</h2>
         <form method="POST" action="">
             <div class="form-group">
                 <label for="username">Username:</label>
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <button type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="register.php">Register here</a></p>
+        <p>Tidak Punya Akun? <a href="register.php">Register Disini</a></p>
     </div>
 </body>
 </html>

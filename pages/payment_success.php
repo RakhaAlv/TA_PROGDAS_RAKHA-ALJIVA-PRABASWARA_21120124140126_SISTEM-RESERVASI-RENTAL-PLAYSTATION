@@ -1,8 +1,7 @@
 <?php
 session_start();
-include "../config/database.php"; // Pastikan koneksi database diimpor
+include "../config/database.php"; 
 
-// Inisialisasi koneksi database
 $database = new Database();
 $conn = $database->getConnection();
 
@@ -34,8 +33,8 @@ if (!$booking) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Successful</title>
-    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=1.0"> 
+    <title>Payment Berhasil</title>
+    <link rel="stylesheet" type="text/css" href="../Design/style.css?v=4.0"> 
 </head>
 <body>
     <div class="success-container">
