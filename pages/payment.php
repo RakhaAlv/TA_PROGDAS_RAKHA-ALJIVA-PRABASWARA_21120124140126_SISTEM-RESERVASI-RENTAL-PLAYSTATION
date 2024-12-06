@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id']) || !isset($_GET['booking_id'])) {
     exit;
 }
 
-$booking_id = isset($_GET['booking_id']) ? $_GET['booking_id'] : null; // Menggunakan ternary operator untuk menghindari error
+$booking_id = isset($_GET['booking_id']) ? $_GET['booking_id'] : null; 
 if (!$booking_id) {
     echo "<p class='error-message'>Booking ID tidak valid.</p>";
     exit;

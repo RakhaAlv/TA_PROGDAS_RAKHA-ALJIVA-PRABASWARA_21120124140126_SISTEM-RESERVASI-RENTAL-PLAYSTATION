@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: login.php");
             exit;
         } else {
-            echo "<p class='error-message'>Error: Could not register user.</p>";
+            echo "<p class='error-message'>Error: User tidak bisa register.</p>";
         }
     }
 }
